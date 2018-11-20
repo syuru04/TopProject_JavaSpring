@@ -19,17 +19,51 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dao.EmpDao;
-import com.example.demo.domain.Emp;
+import com.example.demo.domain.Dept;
 import com.example.demo.domain.ServerResponse;
 
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/emps")
+//@RequestMapping("/emps")
+@RequestMapping("/depts")
 public class EmpRestController {
 	@Autowired
 	private EmpDao dao;
 	
+	@GetMapping
+	public Object get() {
+		List<Dept> depts = dao.findAll();
+		System.out.println(depts);
+		ServerResponse message = new ServerResponse(depts);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "json", Charset.forName("UTF-8")));
+		return new ResponseEntity<ServerResponse>(message, headers, HttpStatus.OK);
+	}
+
+	@PostMapping
+	public Object post(@RequestBody Dept dept) {
+		dao.insert(dept);
+		ServerResponse message = new ServerResponse(dept);
+		return new ResponseEntity<ServerResponse>(message, HttpStatus.OK);
+	}
+
+	@DeleteMapping("/{id}")
+	public Object delete(@PathVariable int id) {
+		dao.delete(id);
+		ServerResponse message = new ServerResponse();
+		return new ResponseEntity<ServerResponse>(message, HttpStatus.OK);
+	}
+
+	@PutMapping
+	public Object update(@RequestBody Dept dept) {
+		dao.update(dept);
+		ServerResponse message = new ServerResponse(dept);
+		return new ResponseEntity<ServerResponse>(message, HttpStatus.OK);
+	}
+
+
+/*	
 	@GetMapping
 	public Object get() {
 		List<Emp> emps = dao.findAll();
@@ -60,4 +94,5 @@ public class EmpRestController {
 		ServerResponse message = new ServerResponse(emp);
 		return new ResponseEntity<ServerResponse>(message, HttpStatus.OK);
 	}
+*/
 }

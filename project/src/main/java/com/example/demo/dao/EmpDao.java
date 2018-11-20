@@ -9,11 +9,31 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 
-import com.example.demo.domain.Emp;
+import com.example.demo.domain.Dept;
 
 @Mapper
 public interface EmpDao {
 	
+	@Insert("insert into dept(name, up_id) values(#{name}, #{upId}")
+	@SelectKey(statement="select LAST_INSERT_ID()", before=false, keyProperty="id", resultType=Integer.class)
+	public int insert(Dept dept);
+	
+	@Update("update dept set name=#{name}, up_id=#{upId}, chief=#{chief} where id=#{id}")
+	public int update(Dept dept);
+	
+	@Delete("delete from dept where id=#{id}")
+	public int delete(int id);
+	
+	@Select("select * from dept order by id")
+	public List<Dept> findAll();
+	
+	@Select("select count(*) from dept")
+	public int count();
+	
+	@Select("select * from dept where id = #{id}")
+	public Dept findOne(int id);
+
+/*	
 	@Insert("insert into emp(ename, job, sal) values(#{ename}, #{job}, #{sal})")
 	@SelectKey(statement="select LAST_INSERT_ID()", before=false, keyProperty="empno", resultType=Integer.class)
 	public int insert(Emp emp);
@@ -33,4 +53,5 @@ public interface EmpDao {
 	
 	@Select("select * from emp where empno = #{empno}")
 	public Emp findOne(int empno);
+*/
 }
