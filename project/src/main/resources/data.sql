@@ -10,4 +10,4 @@
 
 --INSERT INTO emp values (1,'홍길동', '도적', 800), (2,'일지매', '의적', 700), (3,'임꺽정', '산적', 900);
 
-INSERT INTO dept values (1,'대표',null,null), (2,'총무부',1,null), (3,'인사팀',2,null), (4,'총무팀',2,null);
+INSERT INTO dept values (1,'대표',null,null), (2,'총무부',null,1), (3,'인사팀',null,2), (4,'총무팀',null,2);

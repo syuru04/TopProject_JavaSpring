@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class Dept {
 	private int id;
 	private String name;
-	private int upId;
 	private int chief;
+	private int upId;
 }

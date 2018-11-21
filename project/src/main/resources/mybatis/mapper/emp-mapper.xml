@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.EmpDao">
+	<update id="update" parameterType="Emp">
+		update Emp
+		<set>
+			<if test="nick  != ''"> nick=#{nick},</if>
+			<if test="pw    != ''">   pw=#{pw},</if>
+			<if test="name  != ''"> name=#{name},</if>
+			<if test="phone != ''">phone=#{phone},</if>
+			<if test="email != ''">email=#{email},</if>
+			<if test="deptId > 0">dept_id=#{deptId}</if>
+		</set>
+		where id=#{id}
+	</update>
+ </mapper>
