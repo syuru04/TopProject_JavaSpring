@@ -5,9 +5,9 @@
 	<update id="update" parameterType="Dept">
 		update dept
 		<set>
-			<if test="name != ''">name=#{name},</if>
-			<if test="chief > 0">chief=#{chief},</if>
-			<if test="upId > 0">up_id=#{upId}</if>
+			<if test="(name != null) and (name != '')">name=#{name},</if>
+			<if test="chief">chief=#{chief},</if>
+			<if test="upId">up_id=#{upId}</if>
 		</set>
 		where id=#{id}
 	</update>

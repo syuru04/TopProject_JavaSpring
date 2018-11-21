@@ -5,11 +5,11 @@
 	<update id="update" parameterType="Emp">
 		update Emp
 		<set>
-			<if test="nick  != ''"> nick=#{nick},</if>
-			<if test="pw    != ''">   pw=#{pw},</if>
-			<if test="name  != ''"> name=#{name},</if>
-			<if test="phone != ''">phone=#{phone},</if>
-			<if test="email != ''">email=#{email},</if>
+			<if test="(nick != null) and (nick != '')"> nick=#{nick},</if>
+			<if test="(pw != null) and (pw != '')">   pw=#{pw},</if>
+			<if test="(name != null) and (name != '')"> name=#{name},</if>
+			<if test="(phone != null) and (phone != '')">phone=#{phone},</if>
+			<if test="(email != null) and (email != '')">email=#{email},</if>
 			<if test="deptId > 0">dept_id=#{deptId}</if>
 		</set>
 		where id=#{id}
