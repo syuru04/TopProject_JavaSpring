@@ -30,13 +30,23 @@ public class DeptController {
 	private DeptDao dao;
 	
 	@GetMapping
-	public Object get() {
+	public Object getAll() {
 		List<Dept> depts = dao.findAll();
 		ServerResponse message = new ServerResponse(depts);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text", "json", Charset.forName("UTF-8")));
 		return new ResponseEntity<ServerResponse>(message, headers, HttpStatus.OK);
 	}
+	
+	@GetMapping("/s/{id}")
+	public Object getSubs(@PathVariable int id) {
+		List<Dept> depts = dao.findSubs(id);
+		ServerResponse message = new ServerResponse(depts);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "json", Charset.forName("UTF-8")));
+		return new ResponseEntity<ServerResponse>(message, headers, HttpStatus.OK);
+	}
+	
 
 	@GetMapping("/{id}")
 	public Object getById(@PathVariable int id) {

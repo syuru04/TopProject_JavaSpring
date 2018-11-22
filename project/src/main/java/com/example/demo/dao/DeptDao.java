@@ -22,8 +22,11 @@ public interface DeptDao {
 	@Delete("delete from dept where id=#{id}")
 	public int delete(int id);
 	
-	@Select("select * from dept order by id")
+	@Select("select * from dept order by name")
 	public List<Dept> findAll();
+	
+	@Select("select * from dept where up_id=#{id} order by name")
+	public List<Dept> findSubs(int id);
 	
 	@Select("select count(*) from dept")
 	public int count();

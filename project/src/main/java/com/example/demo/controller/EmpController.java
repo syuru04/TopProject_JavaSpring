@@ -31,8 +31,17 @@ public class EmpController {
 	private EmpDao dao;
 	
 	@GetMapping
-	public Object get() {
+	public Object getAll() {
 		List<Emp> emps = dao.findAll();
+		ServerResponse message = new ServerResponse(emps);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "json", Charset.forName("UTF-8")));
+		return new ResponseEntity<ServerResponse>(message, headers, HttpStatus.OK);
+	}
+	
+	@GetMapping("/m/{id}")
+	public Object getMembers(@PathVariable int id) {
+		List<Emp> emps = dao.findMembers(id);
 		ServerResponse message = new ServerResponse(emps);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text", "json", Charset.forName("UTF-8")));
