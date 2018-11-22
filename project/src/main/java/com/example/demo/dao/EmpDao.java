@@ -7,14 +7,13 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
-import org.apache.ibatis.annotations.Update;
 
 import com.example.demo.domain.Emp;
 
 @Mapper
 public interface EmpDao {
 	
-	@Insert("insert into emp(nick,pw,name,phone,email,dept_id) values(#{nick},#{pw},#{name},#{phone},#{email},#{deptId})")
+	@Insert("insert into emp(code,pw,name,phone,email,dept_id) values(#{code},#{pw},#{name},#{phone},#{email},#{deptId})")
 	@SelectKey(statement="select LAST_INSERT_ID()", before=false, keyProperty="id", resultType=Integer.class)
 	public int insert(Emp emp);
 	
@@ -23,13 +22,15 @@ public interface EmpDao {
 	@Delete("delete from emp where id=#{id}")
 	public int delete(int empno);
 	
-	// 마이바티스가 제공하는 애노테이션으로 사용할 SQL을 설정할 수 있다.
-	@Select("select * from emp order by id")
+	@Select("select * from emp order by name")
 	public List<Emp> findAll();
 	
 	@Select("select count(*) from emp")
 	public int count();
 	
 	@Select("select * from emp where id = #{id}")
-	public Emp findOne(int empno);
+	public Emp findOne(int id);
+	
+	@Select("select * from emp where code = #{code}")
+	public Emp findByCode(String coded);
 }

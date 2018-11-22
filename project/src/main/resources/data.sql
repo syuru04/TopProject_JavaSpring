@@ -1,13 +1,13 @@
---INSERT INTO EMP(ename, job, sal) VALUES('Tom', 'Actor', 900);
+INSERT INTO dept values
+  (1,'대표',null,null),(2,'기획부',null,1), (3,'개발부',null,1), (4,'영업부',null,1),
+  (5,'인사팀',null,2), (6,'총무팀',null,2), (7,'회계팀',null,2), (8,'개발1팀',5,3), (9,'개발2팀',6,3);
 
---INSERT INTO emp(ename, job, sal) VALUES('홍길동', '도적', 800);
---INSERT INTO emp(ename, job, sal) VALUES('일지매', '의적', 700);
---INSERT INTO emp(ename, job, sal) VALUES('임꺽정', '산적', 900);
-
---추가 연습용이다.
---INSERT INTO emp(ename, job, sal) VALUES('구운몽', '백수', 999);
---INSERT INTO emp(ename, job, sal) VALUES('온달', '장군', 600);
-
---INSERT INTO emp values (1,'홍길동', '도적', 800), (2,'일지매', '의적', 700), (3,'임꺽정', '산적', 900);
-
-INSERT INTO dept values (1,'대표',null,null), (2,'총무부',null,1), (3,'인사팀',null,2), (4,'총무팀',null,2);
+INSERT INTO emp values
+  (1,'홍','1234','홍길동','01012345678', 'abc@gmail.com', 1),
+  (2,'김','7234','김길동','01012341235', 'abc@gmail.com', 5),
+  (3,'박','1334','박길동','01012344234', 'abc@gmail.com', 5),
+  (4,'이','1235','이길동','01012341334', 'abc@gmail.com', 8),
+  (5,'정','4234','정길동','01012347234', 'abc@gmail.com', 8),
+  (6,'오','9234','오길동','01012341284', 'abc@gmail.com', 9),
+  (7,'허','1284','허길동','01012349234', 'abc@gmail.com', 9);
+  

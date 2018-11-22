@@ -22,7 +22,6 @@ import com.example.demo.dao.DeptDao;
 import com.example.demo.domain.Dept;
 import com.example.demo.domain.ServerResponse;
 
-
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/depts")
@@ -33,18 +32,19 @@ public class DeptController {
 	@GetMapping
 	public Object get() {
 		List<Dept> depts = dao.findAll();
-		System.out.println(depts);
 		ServerResponse message = new ServerResponse(depts);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text", "json", Charset.forName("UTF-8")));
 		return new ResponseEntity<ServerResponse>(message, headers, HttpStatus.OK);
 	}
 
-	@PostMapping
-	public Object post(@RequestBody Dept dept) {
-		dao.insert(dept);
+	@GetMapping("/{id}")
+	public Object getById(@PathVariable int id) {
+		Dept dept = dao.findOne(id);
 		ServerResponse message = new ServerResponse(dept);
-		return new ResponseEntity<ServerResponse>(message, HttpStatus.OK);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "json", Charset.forName("UTF-8")));
+		return new ResponseEntity<ServerResponse>(message, headers, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
@@ -54,11 +54,17 @@ public class DeptController {
 		return new ResponseEntity<ServerResponse>(message, HttpStatus.OK);
 	}
 
+	@PostMapping
+	public Object insert(@RequestBody Dept dept) {
+		dao.insert(dept);
+		ServerResponse message = new ServerResponse(dept);
+		return new ResponseEntity<ServerResponse>(message, HttpStatus.OK);
+	}
+
 	@PutMapping
 	public Object update(@RequestBody Dept dept) {
 		dao.update(dept);
 		ServerResponse message = new ServerResponse(dept);
 		return new ResponseEntity<ServerResponse>(message, HttpStatus.OK);
 	}
-
 }

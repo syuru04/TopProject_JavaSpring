@@ -29,27 +29,46 @@ import com.example.demo.domain.ServerResponse;
 public class EmpController {
 	@Autowired
 	private EmpDao dao;
+	
 	@GetMapping
 	public Object get() {
 		List<Emp> emps = dao.findAll();
-		System.out.println(emps);
 		ServerResponse message = new ServerResponse(emps);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text", "json", Charset.forName("UTF-8")));
 		return new ResponseEntity<ServerResponse>(message, headers, HttpStatus.OK);
 	}
 
-	@PostMapping
-	public Object post(@RequestBody Emp emp) {
-		dao.insert(emp);
+	@PostMapping("/c")
+	public Object getByCode(@RequestBody String code) {
+		System.out.println(code);
+		Emp emp = dao.findByCode(code);
 		ServerResponse message = new ServerResponse(emp);
-		return new ResponseEntity<ServerResponse>(message, HttpStatus.OK);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "json", Charset.forName("UTF-8")));
+		return new ResponseEntity<ServerResponse>(message, headers, HttpStatus.OK);
+	}
+
+	@GetMapping("/{id}")
+	public Object getById(@PathVariable int id) {
+		Emp emp = dao.findOne(id);
+		ServerResponse message = new ServerResponse(emp);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "json", Charset.forName("UTF-8")));
+		return new ResponseEntity<ServerResponse>(message, headers, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
 	public Object delete(@PathVariable int id) {
 		dao.delete(id);
 		ServerResponse message = new ServerResponse();
+		return new ResponseEntity<ServerResponse>(message, HttpStatus.OK);
+	}
+
+	@PostMapping
+	public Object insert(@RequestBody Emp emp) {
+		dao.insert(emp);
+		ServerResponse message = new ServerResponse(emp);
 		return new ResponseEntity<ServerResponse>(message, HttpStatus.OK);
 	}
 

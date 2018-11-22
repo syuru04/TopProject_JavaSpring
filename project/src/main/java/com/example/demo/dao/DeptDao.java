@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
-import org.apache.ibatis.annotations.Update;
 
 import com.example.demo.domain.Dept;
 
@@ -18,7 +17,6 @@ public interface DeptDao {
 	@SelectKey(statement="select LAST_INSERT_ID()", before=false, keyProperty="id", resultType=Integer.class)
 	public int insert(Dept dept);
 	
-//	@Update("update dept set name=#{name}, chief=#{chief}, up_id=#{upId} where id=#{id}")
 	public int update(Dept dept);
 	
 	@Delete("delete from dept where id=#{id}")
