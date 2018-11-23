@@ -29,15 +29,19 @@ public class DeptController {
 		return response(dao.findAll());
 	}
 	
+	@GetMapping("/{id}")
+	public Object findById(@PathVariable int id) {
+		return response(dao.findOne(id));
+	}
+	
+	
+	/*
 	@GetMapping("/s/{id}")
 	public Object findSubs(@PathVariable int id) {
 		return response(dao.findSubs(id));
 	}
 
-	@GetMapping("/{id}")
-	public Object findById(@PathVariable int id) {
-		return response(dao.findOne(id));
-	}
+	
 
 	@DeleteMapping("/{id}")
 	public Object delete(@PathVariable int id) {
@@ -53,4 +57,5 @@ public class DeptController {
 	public Object update(@RequestBody Dept dept) {
 		return response(dao.update(dept), HttpStatus.CONFLICT);
 	}
+	*/
 }

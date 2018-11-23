@@ -11,5 +11,7 @@ public class Dept {
 	private int id;
 	private String name;
 	private int chief;
+	private String chiefName;
 	private int upId;
+	private String upName;
 }
