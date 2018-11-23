@@ -7,12 +7,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Emp {
+public class Note {
 	private int id;
-	private String code;
-	private String pw;
+	private String title;
+	private String body;
+	private String author;
 	private String name;
-	private String phone;
-	private String email;
-	private String deptName;
+	private String stamp;
+	
 }
+

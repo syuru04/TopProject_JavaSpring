@@ -22,7 +22,7 @@ public interface EmpDao {
 	@Delete("delete from emp where id=#{id}")
 	public int delete(int empno);
 	
-	@Select("select * from emp order by name")
+	@Select("select emp.id, emp.CODE,emp.NAME,emp.PHONE,emp.EMAIL,dept.NAME as DEPT_NAME FROM emp left join dept ON dept.ID = emp.DEPT_ID order by dept.id,emp.id;")
 	public List<Emp> findAll();
 	
 	@Select("select * from emp where dept_id=#{id} order by name")
