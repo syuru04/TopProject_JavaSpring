@@ -12,7 +12,7 @@ select n.id, title, body, author, e.name, date_format(ts, '%Y-%m-%d %H:%i:%s') t
  where n.id = #{id}
 	</select>
 	<update id="update" parameterType="Note">
-		update Emp
+		update Note
 		<set>
 			<if test="(title != null) and (title != '')"> title=#{title},</if>
 			<if test="(body != null) and (body != '')"> body=#{body},</if>
