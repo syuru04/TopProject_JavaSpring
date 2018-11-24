@@ -24,11 +24,11 @@ public interface DeptDao {
 	
 	public List<Dept> findAll();
 	
+	public Dept findOne(int id);
+	
 	@Select("select * from dept where up_id=#{id} order by name")
 	public List<Dept> findSubs(int id);
 	
 	@Select("select count(*) from dept")
 	public int count();
-	
-	public Dept findOne(int id);
 }

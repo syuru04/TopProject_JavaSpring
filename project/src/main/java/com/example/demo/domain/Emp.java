@@ -14,5 +14,6 @@ public class Emp {
 	private String name;
 	private String phone;
 	private String email;
+	private int deptId;
 	private String deptName;
 }

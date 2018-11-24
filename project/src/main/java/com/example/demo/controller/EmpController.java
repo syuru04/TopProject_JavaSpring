@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dao.EmpDao;
 import com.example.demo.domain.Emp;
+import com.example.demo.service.EmpService;
 
 @CrossOrigin("*")
 @RestController
@@ -24,6 +25,9 @@ public class EmpController {
 	@Autowired
 	private EmpDao dao;
 	
+	@Autowired
+	private EmpService service;
+
 	@GetMapping
 	public Object findAll() {
 		return response(dao.findAll());
@@ -39,6 +43,11 @@ public class EmpController {
 		return response(dao.findByCode(code));
 	}
 
+	@PostMapping("/pw")
+	public Object isPwOk(@RequestBody String[] codePw) {
+		return response(service.isPwOk(codePw[0], codePw[1]));
+	}
+
 	@GetMapping("/{id}")
 	public Object findById(@PathVariable int id) {
 		return response(dao.findOne(id));
@@ -51,11 +60,11 @@ public class EmpController {
 
 	@PostMapping
 	public Object insert(@RequestBody Emp emp) {
-		return response(dao.insert(emp), HttpStatus.FOUND);
+		return response(service.insert(emp), HttpStatus.FOUND);
 	}
 
 	@PutMapping
 	public Object update(@RequestBody Emp emp) {
-		return response(dao.update(emp), HttpStatus.CONFLICT);
+		return response(service.update(emp), HttpStatus.CONFLICT);
 	}
 }

@@ -15,7 +15,7 @@ create table dept (
 create table emp (
   id int not null auto_increment primary key comment 'emp id',
   code varchar(20) not null unique comment '사용자 id',
-  pw varchar(20) not null comment '사용자 pw',
+  pw binary(32) not null comment '사용자 pw',
   name varchar(20) not null comment '사용자명',
   phone varchar(12) not null comment '휴대폰번호',
   email varchar(50) not null comment '이메일',

@@ -13,7 +13,7 @@ import com.example.demo.domain.Note;
 @Mapper
 public interface NoteDao {
 	
-	@Insert("insert into note(title,body,author,stamp) values(#{title},#{body},#{author},#{stamp})")
+	@Insert("insert into note(title,body,author,ts) values(#{title},#{body},#{author},#{ts})")
 	@SelectKey(statement="select LAST_INSERT_ID()", before=false, keyProperty="id", resultType=Integer.class)
 	public int insert(Note note);
 	

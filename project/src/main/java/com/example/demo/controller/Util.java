@@ -9,7 +9,8 @@ import org.springframework.http.ResponseEntity;
 
 public class Util {
 	private static final HttpHeaders HEADERS = new HttpHeaders();
-	{
+	
+	static {
 		HEADERS.setContentType(new MediaType("text", "json", Charset.forName("UTF-8")));
 	}
 	
