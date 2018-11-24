@@ -14,8 +14,8 @@ select n.id, title, body, author, e.name, date_format(ts, '%Y-%m-%d %H:%i:%s') t
 	<update id="update" parameterType="Note">
 		update Note
 		<set>
-			<if test="(title != null) and (title != '')"> title=#{title},</if>
-			<if test="(body != null) and (body != '')"> body=#{body},</if>
+			<if test="(title != null) and (title != '')">title=#{title},</if>
+			<if test="(body != null) and (body != '')">body=#{body},</if>
 			<if test="author">author=#{author}</if>
 		</set>
 		where id=#{id}
