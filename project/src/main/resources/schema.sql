@@ -1,54 +1,54 @@
-DROP TABLE IF EXISTS NOTE;
-DROP TABLE IF EXISTS APPROVAL;
-DROP TABLE IF EXISTS DOC;
-DROP TABLE IF EXISTS EMP;
-DROP TABLE IF EXISTS DEPT;
+drop table if exists note;
+drop table if exists approval;
+drop table if exists doc;
+drop table if exists emp;
+drop table if exists dept;
 
-CREATE TABLE DEPT (
-  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '부서코드', 
-  NAME varchar(20) NOT NULL UNIQUE COMMENT '부서명', 
-  CHIEF INT NULL COMMENT '부서장',
-  UP_ID INT NULL COMMENT '상위부서코드',
-  FOREIGN KEY(UP_ID) REFERENCES DEPT(ID) ON UPDATE CASCADE
-) ENGINE=InnoDB CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' COMMENT='부서,팀관리';
+create table dept (
+  id int not null auto_increment primary key comment '부서코드', 
+  name varchar(20) not null unique comment '부서명', 
+  chief int null comment '부서장',
+  up_id int null comment '상위부서코드',
+  foreign key(up_id) references dept(id) on update cascade
+) engine=InnoDB character set 'utf8' collate 'utf8_general_ci' comment='부서,팀관리';
 
-CREATE TABLE EMP (
-  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'EMP ID',
-  CODE varchar(20) NOT NULL UNIQUE COMMENT '사용자 ID',
-  PW varchar(20) NOT NULL COMMENT '사용자 PW',
-  NAME varchar(20) NOT NULL COMMENT '사용자명',
-  PHONE varchar(12) NOT NULL COMMENT '휴대폰번호',
-  EMAIL varchar(50) NOT NULL COMMENT '이메일',
-  DEPT_ID INT NOT NULL COMMENT '부서 ID',  
-  FOREIGN KEY(DEPT_ID) REFERENCES DEPT(ID) ON UPDATE CASCADE      
-) ENGINE=InnoDB CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' COMMENT='사원관리';
+create table emp (
+  id int not null auto_increment primary key comment 'emp id',
+  code varchar(20) not null unique comment '사용자 id',
+  pw varchar(20) not null comment '사용자 pw',
+  name varchar(20) not null comment '사용자명',
+  phone varchar(12) not null comment '휴대폰번호',
+  email varchar(50) not null comment '이메일',
+  dept_id int not null comment '부서 id',  
+  foreign key(dept_id) references dept(id) on update cascade      
+) engine=InnoDB character set 'utf8' collate 'utf8_general_ci' comment='사원관리';
 
-CREATE TABLE DOC (
-  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '문서번호',
-  TITLE varchar(1000) NOT NULL COMMENT '제목',
-  BODY varchar(5000) NOT NULL COMMENT '내용',
-  PUBLISH BOOLEAN NOT NULL DEFAULT FALSE COMMENT '공지여부',
-  AUTHOR INT NOT NULL COMMENT '작성자',
-  STAMP DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '수정일시',
-  FOREIGN KEY(AUTHOR) REFERENCES EMP(ID) ON UPDATE CASCADE
-) ENGINE=InnoDB CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' COMMENT='전자결재';
+create table doc (
+  id int not null auto_increment primary key comment '문서번호',
+  title varchar(1000) not null comment '제목',
+  body varchar(5000) not null comment '내용',
+  publish boolean not null default false comment '공지여부',
+  author int not null comment '작성자',
+  ts datetime default current_timestamp on update current_timestamp comment '수정일시',
+  foreign key(author) references emp(id) on update cascade
+) engine=InnoDB character set 'utf8' collate 'utf8_general_ci' comment='전자결재';
 
-CREATE TABLE APPROVAL (
-  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '승인번호',
-  DOC_ID INT NOT NULL COMMENT '문서번호',
-  APPROVER INT NOT NULL COMMENT '결재자',
-  STAT INT NOT NULL DEFAULT 0 COMMENT '결재여부',
-  REASON varchar(1000) NULL COMMENT '비고(반려사유)',
-  STAMP DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '수정일자',  
-  FOREIGN KEY(DOC_ID) REFERENCES DOC(ID) ON UPDATE CASCADE,
-  FOREIGN KEY(APPROVER) REFERENCES EMP(ID) ON UPDATE CASCADE
-) ENGINE=InnoDB CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' COMMENT='전자결재 마스터';
+create table approval (
+  id int not null auto_increment primary key comment '승인번호',
+  doc_id int not null comment '문서번호',
+  approver int not null comment '결재자',
+  stat int not null default 0 comment '결재여부',
+  reason varchar(1000) null comment '비고(반려사유)',
+  ts datetime default current_timestamp on update current_timestamp comment '수정일자',  
+  foreign key(doc_id) references doc(id) on update cascade,
+  foreign key(approver) references emp(id) on update cascade
+) engine=InnoDB character set 'utf8' collate 'utf8_general_ci' comment='전자결재 마스터';
 
-CREATE TABLE NOTE (
-  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '글번호',
-  TITLE varchar(1000) NOT NULL COMMENT '제목',
-  BODY varchar(5000) NOT NULL COMMENT '내용',  
-  AUTHOR INT NOT NULL COMMENT '등록자',
-  STAMP DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '등록일시',
-  FOREIGN KEY(AUTHOR) REFERENCES EMP(ID) ON UPDATE CASCADE
-) ENGINE=InnoDB CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' COMMENT='게시판';
+create table note (
+  id int not null auto_increment primary key comment '글번호',
+  title varchar(1000) not null comment '제목',
+  body varchar(5000) not null comment '내용',  
+  author int not null comment '등록자',
+  ts datetime default current_timestamp on update current_timestamp comment '등록일시',
+  foreign key(author) references emp(id) on update cascade
+) engine=InnoDB character set 'utf8' collate 'utf8_general_ci' comment='게시판';

@@ -1,5 +1,7 @@
 package com.example.demo.domain;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,9 +13,9 @@ public class Note {
 	private int id;
 	private String title;
 	private String body;
-	private String author;
+	private int author;
 	private String name;
-	private String stamp;
+	private String ts;
 	
 }
 

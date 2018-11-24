@@ -22,10 +22,6 @@ public interface DeptDao {
 	@Delete("delete from dept where id=#{id}")
 	public int delete(int id);	
 	
-	@Select("select main.ID, main.NAME, main.CHIEF, emp.NAME as CHIEF_NAME, main.UP_ID , dept.NAME as UP_NAME "
-			+ "from dept main "
-			+ "left join dept ON dept.ID = main.UP_ID "
-			+ "left join emp ON main.CHIEF = emp.ID")
 	public List<Dept> findAll();
 	
 	@Select("select * from dept where up_id=#{id} order by name")
@@ -34,10 +30,5 @@ public interface DeptDao {
 	@Select("select count(*) from dept")
 	public int count();
 	
-	@Select("select main.ID, main.NAME, main.CHIEF, emp.NAME as CHIEF_NAME, main.UP_ID , dept.NAME as UP_NAME\r\n" 
-			+ "from dept main " 
-			+ "left join dept ON dept.ID = main.UP_ID " 
-			+ "left join emp ON main.CHIEF = emp.ID " 
-			+ "where main.id = #{id}")
 	public Dept findOne(int id);
 }

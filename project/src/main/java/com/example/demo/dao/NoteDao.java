@@ -22,7 +22,6 @@ public interface NoteDao {
 	@Delete("delete from note where id=#{id}")
 	public int delete(int empno);
 	
-	@Select("select note.ID, note.TITLE, note.STAMP ,emp.name from note left join emp ON emp.ID = note.AUTHOR;")
 	public List<Note> findAll();
 	
 	@Select("select * from note where dept_id=#{id} order by name")
@@ -31,7 +30,6 @@ public interface NoteDao {
 	@Select("select count(*) from Note")
 	public int count();
 	
-	@Select("select * from Note where id = #{id}")
 	public Note findOne(int id);
 	
 	@Select("select * from Note where code = #{title}")

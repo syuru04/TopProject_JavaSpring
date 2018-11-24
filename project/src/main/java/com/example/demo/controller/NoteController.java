@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import static com.example.demo.controller.Util.response;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dao.NoteDao;
 import com.example.demo.domain.Note;
+import static com.example.demo.controller.Util.response;
 
 @CrossOrigin("*")
 @RestController
@@ -39,18 +38,18 @@ public class NoteController {
 		return response(dao.findOne(id));
 	}
 
-//	@DeleteMapping("/{id}")
-//	public Object delete(@PathVariable int id) {
-//		return response(dao.delete(id), HttpStatus.NOT_FOUND);
-//	}
-//
-//	@PostMapping
-//	public Object insert(@RequestBody Note note) {
-//		return response(dao.insert(note), HttpStatus.FOUND);
-//	}
-//
-//	@PutMapping
-//	public Object update(@RequestBody Note note) {
-//		return response(dao.update(note), HttpStatus.CONFLICT);
-//	}
+	@DeleteMapping("/{id}")
+	public Object delete(@PathVariable int id) {
+		return response(dao.delete(id), HttpStatus.NOT_FOUND);
+	}
+
+	@PostMapping
+	public Object insert(@RequestBody Note note) {
+		return response(dao.insert(note), HttpStatus.FOUND);
+	}
+
+	@PutMapping
+	public Object update(@RequestBody Note note) {
+		return response(dao.update(note), HttpStatus.CONFLICT);
+	}
 }
