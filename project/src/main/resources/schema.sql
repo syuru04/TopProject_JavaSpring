@@ -17,7 +17,7 @@ create table emp (
   code varchar(20) not null unique comment '사용자 id',
   pw binary(32) not null comment '사용자 pw',
   name varchar(20) not null comment '사용자명',
-  phone varchar(12) not null comment '휴대폰번호',
+  phone varchar(20) not null comment '휴대폰번호',
   email varchar(50) not null comment '이메일',
   dept_id int not null comment '부서 id',  
   foreign key(dept_id) references dept(id) on update cascade      
