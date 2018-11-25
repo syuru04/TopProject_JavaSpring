@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 public class Util {
@@ -13,10 +14,6 @@ public class Util {
 	}
 
 	public static byte[] encrypt(String s) {
-		try {
-			return digest.digest(s.getBytes("ISO-8859-1"));
-		} catch (Exception e) {
-			return null;
-		}
+		return digest.digest(s.getBytes(StandardCharsets.UTF_8));
 	}
 }
