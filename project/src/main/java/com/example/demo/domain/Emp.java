@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Emp {
 	private int id;
+	private int deptId;
+	private String name;
 	private String code;
 	private String pw;
-	private String name;
 	private String phone;
 	private String email;
-	private int deptId;
 	private String deptName;
 }

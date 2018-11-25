@@ -14,12 +14,12 @@ create table dept (
 
 create table emp (
   id int not null auto_increment primary key comment 'emp id',
+  dept_id int not null comment '부서 id',  
+  name varchar(20) not null comment '사용자명',
   code varchar(20) not null unique comment '사용자 id',
   pw binary(32) not null comment '사용자 pw',
-  name varchar(20) not null comment '사용자명',
   phone varchar(20) not null comment '휴대폰번호',
   email varchar(50) not null comment '이메일',
-  dept_id int not null comment '부서 id',  
   foreign key(dept_id) references dept(id) on update cascade      
 ) engine=InnoDB character set 'utf8' collate 'utf8_general_ci' comment='사원관리';
 

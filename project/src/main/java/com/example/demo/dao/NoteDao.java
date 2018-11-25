@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 
@@ -24,13 +25,15 @@ public interface NoteDao {
 	
 	public List<Note> findAll();
 	
+	public List<Note> find(@Param("skip") int skip, @Param("count") int count);
+	
+	public Note findOne(int id);
+	
 	@Select("select * from note where dept_id=#{id} order by name")
 	public List<Note> findMembers(String title);
 	
 	@Select("select count(*) from Note")
 	public int count();
-	
-	public Note findOne(int id);
 	
 	@Select("select * from Note where code = #{title}")
 	public Note findByTitle(String title);

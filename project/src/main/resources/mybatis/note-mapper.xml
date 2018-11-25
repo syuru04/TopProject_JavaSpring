@@ -8,6 +8,11 @@ select n.id, title, body, author, e.name, date_format(ts, '%Y-%m-%d %H:%i:%s') t
   from note n left join emp e on e.id = n.author
 	</select>
 
+	<select id="find" resultType="Note">
+select n.id, title, body, author, e.name, date_format(ts, '%Y-%m-%d %H:%i:%s') ts
+  from note n left join emp e on e.id = n.author limit #{skip}, #{count}
+	</select>
+
 	<select id="findOne" resultType="Note">
 select n.id, title, body, author, e.name, date_format(ts, '%Y-%m-%d %H:%i:%s') ts
   from note n left join emp e on e.id = n.author
