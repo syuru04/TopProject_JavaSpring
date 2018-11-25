@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dao.DeptDao;
 import com.example.demo.domain.Dept;
+import com.example.demo.service.DeptService;
 
 @CrossOrigin("*")
 @RestController
@@ -23,6 +24,9 @@ import com.example.demo.domain.Dept;
 public class DeptController {
 	@Autowired
 	private DeptDao dao;
+
+	@Autowired
+	private DeptService service;
 	
 	@GetMapping
 	public Object findAll() {
@@ -35,10 +39,15 @@ public class DeptController {
 	}
 
 	@GetMapping("/s/{id}")
-	public Object findSubs(@PathVariable int id) {
-		return response(dao.findSubs(id));
+	public Object findSub(@PathVariable int id) {
+		return response(dao.findSub(id));
 	}
 
+	@GetMapping("/org")
+	public Object getOrg() {
+		return response(service.getOrg());
+	}
+	
 	@DeleteMapping("/{id}")
 	public Object delete(@PathVariable int id) {
 		return response(dao.delete(id), HttpStatus.NOT_FOUND);

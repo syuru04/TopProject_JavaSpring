@@ -26,8 +26,14 @@ public interface DeptDao {
 	
 	public Dept findOne(int id);
 	
-	@Select("select * from dept where up_id=#{id} order by name")
-	public List<Dept> findSubs(int id);
+	@Select("select id from dept where up_id is null")
+	public int findRoot();
+	
+	@Select("select id from dept where up_id=#{id}")
+	public int[] findSub(int id);
+	
+	@Select("select name from dept where id=#{id}")
+	public String getName(int id);
 	
 	@Select("select count(*) from dept")
 	public int count();

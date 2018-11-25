@@ -27,6 +27,11 @@ public class NoteController {
 	public Object findAll() {
 		return response(dao.findAll());
 	}
+	
+	@PostMapping("/range")
+	public Object find(@RequestBody int[] range) {
+		return response(dao.find(range[0], range[1]));
+	}
 
 	@PostMapping("/c")
 	public Object findBytitle(@RequestBody String title) {
