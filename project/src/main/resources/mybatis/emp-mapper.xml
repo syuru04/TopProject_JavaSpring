@@ -16,7 +16,7 @@ select e.id, d.id dept_id, e.name, e.code, phone, email, d.name dept_name
 	</select>
 
 	<update id="update" parameterType="map">
-		update Emp
+		update emp
 		<set>
 			<if test="(e.code != null) and (e.code != '')">code=#{e.code},</if>
 			<if test="pw != null">pw=#{pw},</if>

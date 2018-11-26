@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
+import org.apache.ibatis.annotations.Update;
 
 import com.example.demo.domain.Emp;
 
@@ -22,6 +23,9 @@ public interface EmpDao {
 	
 	@Delete("delete from emp where id=#{id}")
 	public int delete(int empno);
+	
+	@Update("update dept set chief = null where chief = #{id}")
+	public int deleteChief(int id);
 	
 	public List<Emp> findAll();
 	

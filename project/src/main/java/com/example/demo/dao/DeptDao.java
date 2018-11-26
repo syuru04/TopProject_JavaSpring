@@ -13,7 +13,7 @@ import com.example.demo.domain.Dept;
 @Mapper
 public interface DeptDao {
 	
-	@Insert("insert into dept(name, up_id) values(#{name}, #{upId})")
+	@Insert("insert into dept(name, chief, up_id) values(#{name}, #{chief}, #{upId})")
 	@SelectKey(statement="select LAST_INSERT_ID()", before=false, keyProperty="id", resultType=Integer.class)
 	public int insert(Dept dept);
 	

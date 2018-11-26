@@ -27,4 +27,9 @@ public class EmpService {
 		String pw = emp.getPw();
 		return dao.update(emp, pw == null || pw.isEmpty() ? null : encrypt(pw));
 	}
+	
+	public int delete(int id) {
+		dao.deleteChief(id);
+		return dao.delete(id);
+	}
 }

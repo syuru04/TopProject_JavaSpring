@@ -55,7 +55,7 @@ public class EmpController {
 
 	@DeleteMapping("/{id}")
 	public Object delete(@PathVariable int id) {
-		return response(dao.delete(id), HttpStatus.NOT_FOUND);
+		return response(service.delete(id), HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping
@@ -65,6 +65,7 @@ public class EmpController {
 
 	@PutMapping
 	public Object update(@RequestBody Emp emp) {
+		System.out.println("# EmpController # update() : " + emp.toString());
 		return response(service.update(emp), HttpStatus.CONFLICT);
 	}
 }
