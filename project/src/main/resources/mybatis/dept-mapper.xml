@@ -21,7 +21,8 @@ select d.id, d.name, d.chief, e.name chief_name, d.up_id, u.name up_name
 		update dept
 		<set>
 			<if test="(name != null) and (name != '')">name=#{name},</if>
-			<if test="chief">chief=#{chief},</if>
+			<if test="chief lt 0">chief=null,</if>
+			<if test="chief gt 0">chief=#{chief},</if>
 			<if test="upId">up_id=#{upId}</if>
 		</set>
 		where id=#{id}
