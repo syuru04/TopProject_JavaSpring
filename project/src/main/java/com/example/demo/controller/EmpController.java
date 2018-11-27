@@ -35,7 +35,7 @@ public class EmpController {
 	
 	@GetMapping("/m/{id}")
 	public Object findMembers(@PathVariable int id) {
-		return response(dao.findMembers(id));
+		return response(service.findMembers(id));
 	}
 
 	@PostMapping("/c")
