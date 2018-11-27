@@ -45,6 +45,7 @@ public class EmpController {
 
 	@PostMapping("/pw")
 	public Object isPwOk(@RequestBody String[] codePw) {
+		System.out.println("=========> EmpController # isPwOk : "+ response(service.isPwOk(codePw[0], codePw[1])));
 		return response(service.isPwOk(codePw[0], codePw[1]));
 	}
 
