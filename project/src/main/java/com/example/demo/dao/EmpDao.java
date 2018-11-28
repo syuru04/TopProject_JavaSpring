@@ -37,7 +37,6 @@ public interface EmpDao {
 	@Select("select count(*) from emp")
 	public int count();
 	
-	@Select("select * from emp where code = #{code}")
 	public Emp findByCode(String code);
 	
 	@Select("select pw from emp where code = #{code}")

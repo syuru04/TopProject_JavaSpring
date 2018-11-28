@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import static com.example.demo.controller.Util.response;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -44,8 +46,7 @@ public class EmpController {
 	}
 
 	@PostMapping("/pw")
-	public Object isPwOk(@RequestBody String[] codePw) {
-		System.out.println("=========> EmpController # isPwOk : "+ response(service.isPwOk(codePw[0], codePw[1])));
+	public Object isPwOk(@RequestBody String[] codePw, HttpSession session) {
 		return response(service.isPwOk(codePw[0], codePw[1]));
 	}
 
@@ -66,7 +67,6 @@ public class EmpController {
 
 	@PutMapping
 	public Object update(@RequestBody Emp emp) {
-		System.out.println("# EmpController # update() : " + emp.toString());
 		return response(service.update(emp), HttpStatus.CONFLICT);
 	}
 }
