@@ -31,7 +31,7 @@ public interface EmpDao {
 	
 	public Emp findOne(int id);
 	
-	@Select("select id,name,code,phone,email from emp where dept_id=#{id} order by name")
+	@Select("select id, dept_id, name, code, phone, email from emp where dept_id=#{id}")
 	public List<Emp> findMembers(int id);
 	
 	@Select("select count(*) from emp")
