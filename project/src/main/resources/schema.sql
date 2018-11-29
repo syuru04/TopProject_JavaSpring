@@ -6,7 +6,7 @@ drop table if exists dept;
 
 create table dept (
   id int not null auto_increment primary key comment '부서코드', 
-  name varchar(20) not null unique comment '부서명', 
+  name varchar(20) not null comment '부서명', 
   chief int null comment '부서장',
   up_id int null comment '상위부서코드',
   valid boolean not null default true comment '유효',
