@@ -2,11 +2,11 @@ package com.example.demo.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
+import org.apache.ibatis.annotations.Update;
 
 import com.example.demo.domain.Dept;
 
@@ -19,22 +19,22 @@ public interface DeptDao {
 	
 	public int update(Dept dept);
 	
-	@Delete("delete from dept where id=#{id}")
+	@Update("update dept set valid=false where id=#{id}")
 	public int delete(int id);	
 	
 	public List<Dept> findAll();
 	
 	public Dept findOne(int id);
 	
-	@Select("select id from dept where up_id is null")
+	@Select("select id from dept where up_id is null and valid=true")
 	public int findRoot();
 	
-	@Select("select id from dept where up_id=#{id}")
+	@Select("select id from dept where up_id=#{id} and valid=true")
 	public int[] findSub(int id);
 	
 	@Select("select name from dept where id=#{id}")
 	public String getName(int id);
 	
-	@Select("select count(*) from dept")
+	@Select("select count(*) from dept where and valid=true")
 	public int count();
 }

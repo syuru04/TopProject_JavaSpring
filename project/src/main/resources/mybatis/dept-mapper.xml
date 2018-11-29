@@ -7,13 +7,13 @@
 select d.id, d.name, d.chief, e.name chief_name, d.up_id, u.name up_name
   from dept d left join dept u on u.id = d.up_id
               left join  emp e on e.id = d.chief
- order by d.up_id, d.id
+ where u.valid = true and d.valid = true and e.valid = true
 	</select>
 
 	<select id="findOne" resultType="Dept">
 select d.id, d.name, d.chief, e.name chief_name, d.up_id, u.name up_name 
-  from dept d left join dept u on u.id = d.up_id 
-              left join  emp e on e.id = d.chief 
+  from dept d left join dept u on u.id = d.up_id
+              left join  emp e on e.id = d.chief
  where d.id = #{id}
 	</select>
 

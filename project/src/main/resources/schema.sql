@@ -9,6 +9,7 @@ create table dept (
   name varchar(20) not null unique comment '부서명', 
   chief int null comment '부서장',
   up_id int null comment '상위부서코드',
+  valid boolean not null default true comment '유효',
   foreign key(up_id) references dept(id) on update cascade
 ) engine=InnoDB character set 'utf8' collate 'utf8_general_ci' comment='부서,팀관리';
 
@@ -20,6 +21,7 @@ create table emp (
   pw binary(32) not null comment '사용자 pw',
   phone varchar(20) not null comment '휴대폰번호',
   email varchar(50) not null comment '이메일',
+  valid boolean not null default true comment '유효',
   foreign key(dept_id) references dept(id) on update cascade      
 ) engine=InnoDB character set 'utf8' collate 'utf8_general_ci' comment='사원관리';
 

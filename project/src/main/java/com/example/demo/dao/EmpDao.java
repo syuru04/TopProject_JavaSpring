@@ -2,7 +2,6 @@ package com.example.demo.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -21,20 +20,20 @@ public interface EmpDao {
 	
 	public int update(@Param("e") Emp emp, @Param("pw") byte[] pw);
 	
-	@Delete("delete from emp where id=#{id}")
-	public int delete(int empno);
+	@Update("update emp set valid = false where id = #{id}")
+	public int delete(int id);
 	
-	@Update("update dept set chief = null where chief = #{id}")
+	@Update("update dept set chief = null where chief = #{id} and valid = true")
 	public int deleteChief(int id);
 	
 	public List<Emp> findAll();
 	
 	public Emp findOne(int id);
 	
-	@Select("select id, dept_id, name, code, phone, email from emp where dept_id=#{id}")
+	@Select("select id,dept_id,name,code,phone,email from emp where dept_id = #{id} and valid = true")
 	public List<Emp> findMembers(int id);
 	
-	@Select("select count(*) from emp")
+	@Select("select count(*) from emp where valid = true")
 	public int count();
 	
 	public Emp findByCode(String code);
