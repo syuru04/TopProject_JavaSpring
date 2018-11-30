@@ -19,6 +19,6 @@ public class Util {
 	}
 	
 	public static Object response(int rowsAffected, HttpStatus errorStatus) {
-		return new ResponseEntity<Object>(rowsAffected == 1 ? HttpStatus.OK : errorStatus);
+		return new ResponseEntity<Integer>(rowsAffected, 0 < rowsAffected ? HttpStatus.OK : errorStatus);
 	}
 }
