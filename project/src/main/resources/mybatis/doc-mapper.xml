@@ -12,4 +12,22 @@
 		  left join dept ON emp.dept_id = dept.id
 		) emp on doc.author=emp.id
 	</select>
+	
+	<select id="findByUpinfo" resultType="DocAppr">
+		select 	z.lev1_dept, z.lev1_chief, e1.name lev1_name
+			    , z.lev2_dept, z.lev2_chief, e2.name lev2_name
+			    , z.lev3_dept, z.lev3_chief, e3.name lev3_name
+		from(
+				  select  t1.name as lev1_dept, t1.chief as lev1_chief
+				        , t2.name as lev2_dept, t2.chief as lev2_chief
+				        , t3.name as lev3_dept, t3.chief as lev3_chief
+				  from dept as t1 
+				  left join dept as t2 on t2.id = t1.up_id 
+				  left join dept as t3 on t3.id = t2.up_id 
+				  where t1.id = #{deptId}
+		) z
+		left join emp e1 on z.lev1_chief=e1.id
+		left join emp e2 on z.lev2_chief=e2.id
+		left join emp e3 on z.lev3_chief=e3.id
+	</select>
 </mapper>
