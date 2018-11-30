@@ -14,4 +14,5 @@ public class Note {
 	private int author;
 	private String name;
 	private String ts;
+	
 }

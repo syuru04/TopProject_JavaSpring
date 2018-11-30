@@ -27,6 +27,7 @@ public interface NoteDao {
 	
 	public List<Note> find(@Param("skip") int skip, @Param("count") int count);
 	
+	
 	public Note findOne(int id);
 	
 	@Select("select * from note where dept_id=#{id} order by name")
@@ -35,6 +36,6 @@ public interface NoteDao {
 	@Select("select count(*) from Note")
 	public int count();
 	
-	@Select("select * from Note where code = #{title}")
-	public Note findByTitle(String title);
+	@Select("select body from Note where id = #{id}")
+	public Note findByTitle(String title);		
 }
