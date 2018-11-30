@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import static com.example.demo.controller.Util.response;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dao.NoteDao;
 import com.example.demo.domain.Note;
-import static com.example.demo.controller.Util.response;
 
 @CrossOrigin("*")
 @RestController
@@ -23,6 +24,7 @@ public class NoteController {
 	@Autowired
 	private NoteDao dao;
 	
+
 	@GetMapping
 	public Object findAll() {
 		return response(dao.findAll());
@@ -33,6 +35,10 @@ public class NoteController {
 		return response(dao.find(range[0], range[1]));
 	}
 
+	@PostMapping("/count")
+	public Object count() {		
+		return response(dao.count());
+	}
 	@PostMapping("/c")
 	public Object findBytitle(@RequestBody String title) {
 		return response(dao.findByTitle(title));
@@ -49,12 +55,13 @@ public class NoteController {
 	}
 
 	@PostMapping
-	public Object insert(@RequestBody Note note) {
+	public Object insert(@RequestBody Note note) {		
 		return response(dao.insert(note), HttpStatus.FOUND);
 	}
 
 	@PutMapping
 	public Object update(@RequestBody Note note) {
 		return response(dao.update(note), HttpStatus.CONFLICT);
-	}
+	}	
+	
 }

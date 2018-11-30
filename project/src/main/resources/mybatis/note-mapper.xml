@@ -27,5 +27,6 @@ select n.id, title, body, author, e.name, date_format(ts, '%Y-%m-%d %H:%i:%s') t
 			<if test="author">author=#{author}</if>
 		</set>
 		where id=#{id}
-	</update>
+	</update>	
+		
  </mapper>

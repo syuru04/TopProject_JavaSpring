@@ -14,6 +14,11 @@ public class DeptService {
 	@Autowired
 	DeptDao dao;
 	
+	public int insert(Dept dept) {
+		int rowsAffected = dao.insert(dept);
+		return rowsAffected == 1 ? dept.getId() : 0;
+	}
+	
 	public Dept getOrg() {
 		return getOrg(dao.findRoot());
 	}
