@@ -6,12 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.dao.DeptDao;
 import com.example.demo.dao.EmpDao;
@@ -30,7 +26,8 @@ public class EmpService {
 	}
 
 	public int insert(Emp emp) {
-		return dao.insert(emp, encrypt(emp.getPw()));
+		int rowsAffected = dao.insert(emp, encrypt(emp.getPw()));
+		return rowsAffected == 1 ? emp.getId() : 0;
 	}
 
 	public int update(Emp emp) {

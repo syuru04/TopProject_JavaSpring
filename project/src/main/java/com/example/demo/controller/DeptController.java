@@ -55,7 +55,7 @@ public class DeptController {
 
 	@PostMapping
 	public Object insert(@RequestBody Dept dept) {
-		return response(dao.insert(dept), HttpStatus.FOUND);
+		return response(service.insert(dept), HttpStatus.FOUND);
 	}
 
 	@PutMapping
