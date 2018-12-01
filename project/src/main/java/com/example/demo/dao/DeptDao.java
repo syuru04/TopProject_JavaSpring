@@ -29,7 +29,7 @@ public interface DeptDao {
 	@Select("select id from dept where up_id is null and valid=true")
 	public int findRoot();
 	
-	@Select("select id from dept where up_id=#{id} and valid=true")
+	@Select("select id from dept where up_id=#{id} and valid=true order by dept.name")
 	public int[] findSub(int id);
 	
 	@Select("select name from dept where id=#{id}")
