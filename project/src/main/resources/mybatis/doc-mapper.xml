@@ -13,6 +13,13 @@
 		) emp on doc.author=emp.id
 	</select>
 	
+	<select id="findOne" resultType="Doc">
+		 select d.id, d.title, d.body, if(d.publish=1,'true','false') as publish, d.author, e.name as authorName, d.ts
+		 from doc d
+		 left join emp e on d.author = e.id
+		 where d.id = #{id}
+	</select>
+	
 	<select id="findByUpinfo" resultType="DocAppr">
 		select 	z.lev1_dept, z.lev1_chief, e1.name lev1_name
 			    , z.lev2_dept, z.lev2_chief, e2.name lev2_name
@@ -30,4 +37,15 @@
 		left join emp e2 on z.lev2_chief=e2.id
 		left join emp e3 on z.lev3_chief=e3.id
 	</select>
+	
+	<update id="update" parameterType="Doc">
+		update doc
+		<set>
+			<if test="(title != null) and (title != '')">title=#{title}, </if>
+			<if test="(body != null) and (body != '')">body=#{body}, </if>
+			<if test="publish">publish=#{publish}, </if>
+			<if test="ts">ts=#{ts}</if>
+		</set>
+		where id=#{id}
+	</update>
 </mapper>
