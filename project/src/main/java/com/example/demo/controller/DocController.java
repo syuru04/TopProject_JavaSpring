@@ -40,7 +40,8 @@ public class DocController {
 	
 	@PostMapping
 	public Object insert(@RequestBody Doc doc) {
-		return response(dao.insert(doc), HttpStatus.FOUND);
+		response(dao.insert(doc));
+		return doc.getId();
 	}
 	
 	@PutMapping

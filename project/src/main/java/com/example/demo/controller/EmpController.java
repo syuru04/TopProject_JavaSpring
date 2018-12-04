@@ -56,8 +56,6 @@ public class EmpController {
 	}
 
 	@DeleteMapping("/{id}")
-	
-	
 	public Object delete(@PathVariable int id) {
 		return response(service.delete(id), HttpStatus.NOT_FOUND);
 	}
